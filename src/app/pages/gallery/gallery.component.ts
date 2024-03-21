@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { CameraResultType, CameraSource } from '@capacitor/camera';
 import { CameraPreviewOptions } from '@capacitor-community/camera-preview';
-import {  CameraResultType } from '@capacitor/camera';
+import { Plugins } from '@capacitor/core';
 
 import '@capacitor-community/camera-preview';
 
-const { CameraPreview, Camera } = Plugins;
+const { CameraPreview, Filesystem } = Plugins;
 
 @Component({
   selector: 'app-gallery',
@@ -18,39 +18,48 @@ export class GalleryComponent {
 
   constructor() {}
 
-  openCamera() {
+  async openCamera() {
     const cameraPreviewOptions: CameraPreviewOptions = {
       position: 'rear',
       parent: 'cameraPreview',
       className: 'cameraPreview',
     };
 
-    CameraPreview['start'](cameraPreviewOptions);
+    await CameraPreview['start'](cameraPreviewOptions); // Utiliza la notación de índice para acceder a 'start'
     this.cameraActive = true;
   }
 
-  stopCamera() {
-    CameraPreview['stop']();
+  async stopCamera() {
+    await CameraPreview['stop'](); // Utiliza la notación de índice para acceder a 'stop'
     this.cameraActive = false;
   }
 
-  captureImage() {
-    CameraPreview['getPhoto']({
+  async captureImage() {
+    const result = await CameraPreview['getPhoto']({
       quality: 100,
-      resultType: CameraResultType.Uri
-    }).then((result: any) => {
-      this.image = result && result.webPath;
-    }).catch((error: any) => {
-      console.error('Error capturing image', error);
-    });
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+    }); // Utiliza la notación de índice para acceder a 'getPhoto'
+
+    this.image = result && result.webPath;
   }
 
-  flipCamera() {
-    CameraPreview['flip']();
-  }
+  async saveImage() {
+    if (!this.image) {
+      console.error('No hay imagen para guardar');
+      return;
+    }
 
-  savelmage() {
-    // Aquí deberías implementar la lógica para guardar la imagen capturada
-    console.log('Guardando imagen:', this.image);
+    try {
+      await Filesystem['writeFile']({
+        path: 'captured-image.jpg',
+        data: this.image,
+        directory: 'PICTURES',
+      });
+
+      console.log('Imagen guardada');
+    } catch (error) {
+      console.error('Error al guardar la imagen:', error);
+    }
   }
 }
