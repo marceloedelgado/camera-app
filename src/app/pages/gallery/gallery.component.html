@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content>
+  <h1>Tomar foto del frente de tu DNI</h1>
+
   <div id="cameraPreview" class="cameraPreview">
     <div *ngIf="cameraActive">
       <img src="../../../assets/marco-foco.png" class="image-overlay">
@@ -20,13 +22,19 @@
           <ion-icon name="camera-outline" slot="icon-only"></ion-icon>
       </ion-button>
 
-      <ion-button (click)="flipCamera()" expand="block" id="flip">
+      <!--<ion-button (click)="flipCamera()" expand="block" id="flip">
         <ion-icon name="camera-reverse-outline" slot="icon-only"></ion-icon>
-    </ion-button>
-  </div>
-    
+      </ion-button>-->
+    </div>
   </div>
 
+  <h3 style="margin-top: 30px;">Coloque su DNI Frente dentro del recuadro. Verifique que sea legible, tenga buena luz y no tenga sombras</h3>
+
   <ion-img [src]="image" *ngIf="image && !cameraActive"></ion-img>
+
   <ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive">Open Camera</ion-button>
+
+  <ion-button (click)="captureImage()" expand="full" *ngIf="cameraActive">Tomar Foto</ion-button>
+  <ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive">Volver a tomar foto</ion-button>
+  <ion-button (click)="saveImage()" expand="full" *ngIf="image">Listo</ion-button>
 </ion-content>
