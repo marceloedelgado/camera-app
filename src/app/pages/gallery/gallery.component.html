@@ -13,22 +13,27 @@
       <div class="image-overlay-container">
         <img src="../../../assets/marco-foco.png" class="image-overlay">
       </div>
-      <footer>
-        <ion-button (click)="stopCamera()" expand="block" id="close">
-          <ion-icon name="close-circle-outline"></ion-icon>
-        </ion-button>
-    
-        <ion-button (click)="captureImage()" expand="block" id="capture">
-            <ion-icon name="camera-outline" slot="icon-only"></ion-icon>
-        </ion-button>
-    
-        <!--<ion-button (click)="flipCamera()" expand="block" id="flip">
-          <ion-icon name="camera-reverse-outline" slot="icon-only"></ion-icon>
-      </ion-button> --> 
-      </footer>
+     
     </div>
   </div>
 
   <ion-img [src]="image" *ngIf="image && !cameraActive"></ion-img>
-  <ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive">Abrir Cámara</ion-button>
+  
+  <footer>
+    <ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive">Abrir Cámara</ion-button>
+  </footer>
+
+  <footer *ngIf="cameraActive">
+    <ion-button (click)="stopCamera()" expand="block" id="close">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="captureImage()" expand="block" id="capture">
+        <ion-icon name="camera-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="saveImage()" expand="block" id="flip">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+  </footer>
 </ion-content>
