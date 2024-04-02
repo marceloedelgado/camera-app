@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">camara-overlay</string>
-    <string name="title_activity_main">camara-overlay</string>
-    <string name="package_name">com.energiademisiones.app</string>
-    <string name="custom_url_scheme">com.energiademisiones.app</string>
+    <string name="app_name">appPhoto</string>
+    <string name="title_activity_main">appPhoto</string>
+    <string name="package_name">com.example.appPhoto</string>
+    <string name="custom_url_scheme">com.example.appPhoto</string>
 </resources>
