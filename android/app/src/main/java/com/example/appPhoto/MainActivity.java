@@ -1,4 +1,4 @@
-package com.energiademisiones.app;
+package com.example.appPhoto;
 
 import com.getcapacitor.BridgeActivity;
 
