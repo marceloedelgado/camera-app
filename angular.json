@@ -98,10 +98,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "app-photo:build:production"
+              "buildTarget": "app-photo:build:production"
             },
             "development": {
-              "browserTarget": "app-photo:build:development"
+              "buildTarget": "app-photo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -109,7 +109,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "app-photo:build"
+            "buildTarget": "app-photo:build"
           }
         },
         "test": {
@@ -151,11 +151,11 @@
         "ionic-cordova-build": {
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
-            "browserTarget": "app-photo:build"
+            "buildTarget": "app-photo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "app-photo:build:production"
+              "buildTarget": "app-photo:build:production"
             }
           }
         }
