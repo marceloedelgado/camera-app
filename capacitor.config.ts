@@ -17,6 +17,13 @@ const config: CapacitorConfig = {
       SplashScreen: 'screen',
       SplashScreenDelay: '3000'
     }
+  },
+  plugins: {
+    Filesystem: {
+      web: {
+        package: '@capacitor/filesystem'
+      }
+    }
   }
 };
 
